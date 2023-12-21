@@ -19,9 +19,9 @@ export const defaultTheme = {
       shape: {
         100: '#323238',
         200: '#29292E',
-        300: '#202024',
+        300: '#121214',
       },
-      background: '#121214',
+      background: '#202024',
     },
   },
   typography: {
