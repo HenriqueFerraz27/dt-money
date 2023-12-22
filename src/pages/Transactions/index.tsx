@@ -1,7 +1,15 @@
-import { Header } from '../../components'
+import { Header, Summary } from '../../components'
+import * as S from './styles'
 
 function Transactions() {
-  return <Header />
+  return (
+    <>
+      <Header />
+      <S.TransactionsMain>
+        <Summary />
+      </S.TransactionsMain>
+    </>
+  )
 }
 
 export default Transactions
