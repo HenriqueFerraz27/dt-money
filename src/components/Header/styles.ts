@@ -10,7 +10,8 @@ export const HeaderContent = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  max-width: 77.5%;
+  max-width: 1440px;
+  width: 77.5%;
   margin: auto;
 `
 
