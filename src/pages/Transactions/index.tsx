@@ -1,4 +1,4 @@
-import { Header, Summary, TransactionsTable } from '../../components'
+import { Header, SearchForm, Summary, TransactionsTable } from '../../components'
 import * as S from './styles'
 
 function Transactions() {
@@ -7,6 +7,7 @@ function Transactions() {
       <Header />
       <S.TransactionsMain>
         <Summary />
+        <SearchForm/>
         <TransactionsTable />
       </S.TransactionsMain>
     </>
