@@ -37,9 +37,9 @@ export const TransactionsTable = styled.table`
 `
 
 interface PriceTypeProps {
-  type: 'income' | 'outcome'
+  segment: 'income' | 'outcome'
 }
 
 export const PriceType = styled.td<PriceTypeProps>`
-  color: ${({ theme, type }) => type === 'income' ? theme.colors.brand[100] : theme.colors.red[200]};
+  color: ${({ theme, segment }) => segment === 'income' ? theme.colors.brand[100] : theme.colors.red[200]};
 `

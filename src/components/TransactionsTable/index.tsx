@@ -20,13 +20,13 @@ export const TransactionsTable = () => {
         </tr>
         <tr>
           <td>Desenvolvimento de site</td>
-          <S.PriceType type='income'>R$ 12.000,00</S.PriceType>
+          <S.PriceType segment='income'>R$ 12.000,00</S.PriceType>
           <td>Trabalho/Venda</td>
           <td>13/04/2022</td>
         </tr>
         <tr>
           <td>Desenvolvimento de site</td>
-          <S.PriceType type='outcome'>- R$ 12.000,00</S.PriceType>
+          <S.PriceType segment='outcome'>- R$ 12.000,00</S.PriceType>
           <td>Trabalho/Venda</td>
           <td>13/04/2022</td>
         </tr>
