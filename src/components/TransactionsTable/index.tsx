@@ -5,7 +5,7 @@ export const TransactionsTable = () => {
     <S.TransactionsTable>
       <thead>
         <tr>
-          <td>Título</td>
+          <td>Descrição</td>
           <td>Valor</td>
           <td>Categoria</td>
           <td>Data</td>

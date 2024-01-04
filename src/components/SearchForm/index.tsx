@@ -6,7 +6,7 @@ export const SearchForm = () => {
   return (
     <S.SearchForm>
       <S.SearchInput placeholder="Busque uma transação" />
-      <Styled.Button variant='secondary'>
+      <Styled.Button variant='outline'>
         <Icon.MagnifyingGlass weight="bold" /> Buscar
       </Styled.Button>
     </S.SearchForm>

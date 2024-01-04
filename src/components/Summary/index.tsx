@@ -7,7 +7,6 @@ export const Summary = () => {
       <S.SummaryCard>
         <header>
           <span>Entradas</span>
-
           <Icon.ArrowCircleUp />
         </header>
 
