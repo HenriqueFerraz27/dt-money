@@ -1,6 +1,11 @@
-import * as S from './styles'
+import { Transaction } from '../../pages/Transactions';
+import * as S from './styles';
 
-export const TransactionsTable = () => {
+interface TransactionsTableProps {
+  transactions: Transaction[];
+}
+
+export const TransactionsTable = ({ transactions }: TransactionsTableProps) => {
   return (
     <S.TransactionsTable>
       <thead>
@@ -12,25 +17,17 @@ export const TransactionsTable = () => {
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td>Desenvolvimento de site</td>
-          <td>R$ 12.000,00</td>
-          <td>Trabalho/Venda</td>
-          <td>13/04/2022</td>
-        </tr>
-        <tr>
-          <td>Desenvolvimento de site</td>
-          <S.PriceType segment='income'>R$ 12.000,00</S.PriceType>
-          <td>Trabalho/Venda</td>
-          <td>13/04/2022</td>
-        </tr>
-        <tr>
-          <td>Desenvolvimento de site</td>
-          <S.PriceType segment='outcome'>- R$ 12.000,00</S.PriceType>
-          <td>Trabalho/Venda</td>
-          <td>13/04/2022</td>
-        </tr>
+        {transactions.map(transaction => {
+          return (
+            <tr key={transaction.id}>
+              <td>{transaction.description}</td>
+              <S.PriceType segment={transaction.segment}>R$ {transaction.price}</S.PriceType>
+              <td>{transaction.category}</td>
+              <td>{transaction.createdAt}</td>
+            </tr>
+          );
+        })}
       </tbody>
     </S.TransactionsTable>
-  )
-}
+  );
+};
