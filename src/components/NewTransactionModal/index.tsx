@@ -1,9 +1,34 @@
 import * as S from './styles'
 import * as Dialog from '@radix-ui/react-dialog'
 import * as Icon from 'phosphor-react'
-import * as Styled from '../../styles/components/Button'
+import * as z from 'zod'
+import { Controller, useForm } from 'react-hook-form'
+import { zodResolver } from '@hookform/resolvers/zod'
+
+const NewTransactionFormSchema = z.object({
+  description: z.string(),
+  price: z.number(),
+  category: z.string(),
+  segment: z.enum(['income', 'outcome']),
+})
+
+type NewTransactionFormData = z.infer<typeof NewTransactionFormSchema>
 
 export const NewTransactionModal = () => {
+  const {
+    register,
+    handleSubmit,
+    formState: { isSubmitting },
+    control,
+  } = useForm<NewTransactionFormData>({
+    resolver: zodResolver(NewTransactionFormSchema),
+  })
+
+  const handleCreateNewTransaction = async (data: NewTransactionFormData) => {
+    await new Promise(resolve => setTimeout(resolve, 2000))
+    console.log(data)
+  }
+
   return (
     <Dialog.Portal>
       <S.ModalOverlay />
@@ -11,26 +36,51 @@ export const NewTransactionModal = () => {
       <S.ModalContent>
         <Dialog.Title>Nova Transação</Dialog.Title>
 
-        <S.ModalForm>
-          <input type="text" placeholder="Descrição" required />
-          <input type="number" placeholder="Preço" required />
-          <input type="text" placeholder="Categoria" required />
+        <S.ModalForm onSubmit={handleSubmit(handleCreateNewTransaction)}>
+          <input
+            type='text'
+            placeholder='Descrição'
+            required
+            {...register('description')}
+          />
+          <input
+            type='number'
+            placeholder='Preço'
+            required
+            {...register('price', { valueAsNumber: true })}
+          />
+          <input
+            type='text'
+            placeholder='Categoria'
+            required
+            {...register('category')}
+          />
 
-          <S.TransactionType>
-            <S.TransactionTypeButton segment="income" value="income">
-              <Icon.ArrowCircleUp /> Entrada
-            </S.TransactionTypeButton>
+          <Controller
+            control={control}
+            name='segment'
+            render={({ field }) => {
+              return (
+                <S.TransactionType onValueChange={field.onChange}>
+                  <S.TransactionTypeButton segment='income' value='income'>
+                    <Icon.ArrowCircleUp /> Entrada
+                  </S.TransactionTypeButton>
 
-            <S.TransactionTypeButton segment="outcome" value="outcome">
-              <Icon.ArrowCircleDown /> Saída
-            </S.TransactionTypeButton>
-          </S.TransactionType>
+                  <S.TransactionTypeButton segment='outcome' value='outcome'>
+                    <Icon.ArrowCircleDown /> Saída
+                  </S.TransactionTypeButton>
+                </S.TransactionType>
+              )
+            }}
+          />
 
-          <Styled.Button type="submit">Cadastrar</Styled.Button>
+          <S.RegisterButton type='submit' disabled={isSubmitting}>
+            Cadastrar
+          </S.RegisterButton>
         </S.ModalForm>
 
         <S.ModalCloseButton>
-          <Icon.X weight="bold" />
+          <Icon.X weight='bold' />
         </S.ModalCloseButton>
       </S.ModalContent>
     </Dialog.Portal>

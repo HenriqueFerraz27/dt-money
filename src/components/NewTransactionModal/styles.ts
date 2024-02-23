@@ -2,6 +2,7 @@ import styled from 'styled-components'
 import * as Dialog from '@radix-ui/react-dialog'
 import { pxToRem } from '../../utils/pxToRem'
 import * as RadioGroup from '@radix-ui/react-radio-group'
+import { Button } from '../../styles/components/Button'
 
 export const ModalCloseButton = styled(Dialog.Close)`
   position: absolute;
@@ -77,9 +78,7 @@ interface TransactionTypeButtonProps {
   segment: 'income' | 'outcome'
 }
 
-export const TransactionTypeButton = styled(
-  RadioGroup.Item,
-)<TransactionTypeButtonProps>`
+export const TransactionTypeButton = styled(RadioGroup.Item)<TransactionTypeButtonProps>`
   gap: ${pxToRem(12)};
   min-height: ${pxToRem(55)};
   padding: 0 ${pxToRem(16)};
@@ -110,5 +109,12 @@ export const TransactionTypeButton = styled(
     svg {
       color: ${({ theme }) => theme.colors.base.text[100]};
     }
+  }
+`
+
+export const RegisterButton = styled(Button)`
+  &:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
   }
 `
