@@ -11,6 +11,7 @@ export const SearchForm = styled.form`
 export const SearchInput = styled.input`
   flex: 1;
   padding: 0 ${pxToRem(16)};
+  color: ${({ theme }) => theme.colors.base.text[200]};
   border-radius: ${pxToRem(8)};
   border: none;
   background-color: ${({ theme }) => theme.colors.base.shape[300]};
