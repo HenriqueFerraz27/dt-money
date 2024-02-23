@@ -1,4 +1,5 @@
 import { useTransactions } from '../../hooks/useTransactions'
+import { dateFormatter, priceFormatter } from '../../utils/formatter'
 import * as S from './styles'
 
 export const TransactionsTable = () => {
@@ -20,10 +21,10 @@ export const TransactionsTable = () => {
             <tr key={transaction.id}>
               <td>{transaction.description}</td>
               <S.PriceType segment={transaction.segment}>
-                R$ {transaction.price}
+                {priceFormatter.format(transaction.price)}
               </S.PriceType>
               <td>{transaction.category}</td>
-              <td>{transaction.createdAt}</td>
+              <td>{dateFormatter.format(new Date(transaction.createdAt))}</td>
             </tr>
           )
         })}

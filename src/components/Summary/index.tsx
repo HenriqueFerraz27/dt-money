@@ -1,6 +1,7 @@
 import * as Icon from 'phosphor-react'
 import * as S from './styles'
 import { useTransactions } from '../../hooks/useTransactions'
+import { priceFormatter } from '../../utils/formatter'
 
 export const Summary = () => {
   const { transactions } = useTransactions()
@@ -34,7 +35,7 @@ export const Summary = () => {
           <Icon.ArrowCircleUp />
         </header>
 
-        <strong>R$ {summary.income}</strong>
+        <strong>{priceFormatter.format(summary.income)}</strong>
       </S.SummaryCard>
 
       <S.SummaryCard>
@@ -43,7 +44,7 @@ export const Summary = () => {
           <Icon.ArrowCircleDown />
         </header>
 
-        <strong>R$ {summary.outcome}</strong>
+        <strong>{priceFormatter.format(summary.outcome)}</strong>
       </S.SummaryCard>
 
       <S.SummaryCard statusCard='negative'>
@@ -52,7 +53,7 @@ export const Summary = () => {
           <Icon.CurrencyDollar />
         </header>
 
-        <strong>R$ {summary.total}</strong>
+        <strong>{priceFormatter.format(summary.total)}</strong>
       </S.SummaryCard>
     </S.Summary>
   )
