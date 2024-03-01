@@ -12,6 +12,7 @@ export interface Transaction {
 
 interface TransactionsContextData {
   transactions: Transaction[]
+  loadTransactions: (query?: string) => Promise<void>
 }
 
 export const TransactionsContext = createContext({} as TransactionsContextData)
@@ -40,7 +41,7 @@ export const TransactionsProvider = ({
   }, [])
 
   return (
-    <TransactionsContext.Provider value={{ transactions }}>
+    <TransactionsContext.Provider value={{ transactions, loadTransactions }}>
       {children}
     </TransactionsContext.Provider>
   )
