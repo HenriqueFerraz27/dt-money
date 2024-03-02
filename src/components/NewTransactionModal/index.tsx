@@ -40,35 +40,35 @@ export const NewTransactionModal = () => {
 
         <S.ModalForm onSubmit={handleSubmit(handleCreateNewTransaction)}>
           <input
-            type='text'
-            placeholder='Descrição'
+            type="text"
+            placeholder="Descrição"
             required
             {...register('description')}
           />
           <input
-            type='number'
-            placeholder='Preço'
+            type="number"
+            placeholder="Preço"
             required
             {...register('price', { valueAsNumber: true })}
           />
           <input
-            type='text'
-            placeholder='Categoria'
+            type="text"
+            placeholder="Categoria"
             required
             {...register('category')}
           />
 
           <Controller
             control={control}
-            name='segment'
+            name="segment"
             render={({ field }) => {
               return (
                 <S.TransactionType onValueChange={field.onChange}>
-                  <S.TransactionTypeButton segment='income' value='income'>
+                  <S.TransactionTypeButton segment="income" value="income">
                     <Icon.ArrowCircleUp /> Entrada
                   </S.TransactionTypeButton>
 
-                  <S.TransactionTypeButton segment='outcome' value='outcome'>
+                  <S.TransactionTypeButton segment="outcome" value="outcome">
                     <Icon.ArrowCircleDown /> Saída
                   </S.TransactionTypeButton>
                 </S.TransactionType>
@@ -76,13 +76,13 @@ export const NewTransactionModal = () => {
             }}
           />
 
-          <S.RegisterButton type='submit' disabled={isSubmitting}>
+          <S.RegisterButton type="submit" disabled={isSubmitting}>
             Cadastrar
           </S.RegisterButton>
         </S.ModalForm>
 
         <S.ModalCloseButton>
-          <Icon.X weight='bold' />
+          <Icon.X weight="bold" />
         </S.ModalCloseButton>
       </S.ModalContent>
     </Dialog.Portal>

@@ -1,7 +1,7 @@
 import { NewTransactionModal } from '..'
 import * as Styled from '../../styles/components/Button'
 import * as S from './styles'
-import logoDTMoneyHorizontal from '/logos/dt-money-horizontal.svg'
+import logoDTMoneyHorizontal from '../../../../../../../logos/dt-money-horizontal.svg'
 import * as Dialog from '@radix-ui/react-dialog'
 
 export const Header = () => {

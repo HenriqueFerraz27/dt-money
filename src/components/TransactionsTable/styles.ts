@@ -14,10 +14,10 @@ export const TransactionsTable = styled.table`
     padding: 0 ${pxToRem(8)};
 
     &:first-child {
-    width: 50%;
-    padding-left: ${pxToRem(32)};
-    border-top-left-radius: ${pxToRem(8)};
-    border-bottom-left-radius: ${pxToRem(8)};
+      width: 50%;
+      padding-left: ${pxToRem(32)};
+      border-top-left-radius: ${pxToRem(8)};
+      border-bottom-left-radius: ${pxToRem(8)};
     }
 
     &:last-child {
@@ -41,5 +41,6 @@ interface PriceTypeProps {
 }
 
 export const PriceType = styled.td<PriceTypeProps>`
-  color: ${({ theme, segment }) => segment === 'income' ? theme.colors.brand[100] : theme.colors.red[200]};
+  color: ${({ theme, segment }) =>
+    segment === 'income' ? theme.colors.brand[100] : theme.colors.red[200]};
 `

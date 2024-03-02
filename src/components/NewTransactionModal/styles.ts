@@ -78,7 +78,9 @@ interface TransactionTypeButtonProps {
   segment: 'income' | 'outcome'
 }
 
-export const TransactionTypeButton = styled(RadioGroup.Item)<TransactionTypeButtonProps>`
+export const TransactionTypeButton = styled(
+  RadioGroup.Item,
+)<TransactionTypeButtonProps>`
   gap: ${pxToRem(12)};
   min-height: ${pxToRem(55)};
   padding: 0 ${pxToRem(16)};

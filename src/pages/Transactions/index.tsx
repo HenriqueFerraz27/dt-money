@@ -13,7 +13,7 @@ function Transactions() {
       <S.TransactionsMain>
         <Summary />
         <SearchForm />
-        <TransactionsTable/>
+        <TransactionsTable />
       </S.TransactionsMain>
     </>
   )

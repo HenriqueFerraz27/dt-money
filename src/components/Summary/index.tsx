@@ -26,7 +26,7 @@ export const Summary = () => {
         <strong>{priceFormatter.format(summary.outcome)}</strong>
       </S.SummaryCard>
 
-      <S.SummaryCard statusCard='negative'>
+      <S.SummaryCard statusCard="negative">
         <header>
           Total
           <Icon.CurrencyDollar />

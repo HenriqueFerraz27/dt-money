@@ -30,11 +30,11 @@ export const SearchForm = () => {
   return (
     <S.SearchForm onSubmit={handleSubmit(handleSearchTransactions)}>
       <S.SearchInput
-        placeholder='Busque uma transação'
+        placeholder="Busque uma transação"
         {...register('search')}
       />
-      <S.SearchButton variant='outline' disabled={isSubmitting}>
-        <Icon.MagnifyingGlass weight='bold' /> Buscar
+      <S.SearchButton variant="outline" disabled={isSubmitting}>
+        <Icon.MagnifyingGlass weight="bold" /> Buscar
       </S.SearchButton>
     </S.SearchForm>
   )
