@@ -20,13 +20,15 @@ export const NewTransactionModal = () => {
     handleSubmit,
     formState: { isSubmitting },
     control,
+    reset,
   } = useForm<NewTransactionFormData>({
     resolver: zodResolver(NewTransactionFormSchema),
   })
 
   const handleCreateNewTransaction = async (data: NewTransactionFormData) => {
-    await new Promise(resolve => setTimeout(resolve, 2000))
+    reset()
     console.log(data)
+    await new Promise(resolve => setTimeout(resolve, 2000))
   }
 
   return (
