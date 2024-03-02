@@ -3,6 +3,7 @@ import * as Icon from 'phosphor-react'
 import * as z from 'zod'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
+import { useTransactions } from '../../hooks/useTransactions'
 
 const searchFormSchema = z.object({
   search: z.string(),
@@ -19,9 +20,11 @@ export const SearchForm = () => {
     resolver: zodResolver(searchFormSchema),
   })
 
+  const { fetchTransactions } = useTransactions()
+
   const handleSearchTransactions = async (data: SearchFormData) => {
+    fetchTransactions(data.search)
     await new Promise(resolve => setTimeout(resolve, 2000))
-    console.log(data)
   }
 
   return (
