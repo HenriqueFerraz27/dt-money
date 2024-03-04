@@ -4,6 +4,9 @@ import * as Icon from 'phosphor-react'
 import * as z from 'zod'
 import { Controller, useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
+import { useTransactions } from '../../hooks/useTransactions'
+import { useState } from 'react'
+import * as Styled from '../../styles/components/Button'
 
 const NewTransactionFormSchema = z.object({
   description: z.string(),
@@ -25,66 +28,86 @@ export const NewTransactionModal = () => {
     resolver: zodResolver(NewTransactionFormSchema),
   })
 
+  const [open, setOpen] = useState(false)
+
+  const { createNewTransaction } = useTransactions()
+
   const handleCreateNewTransaction = async (data: NewTransactionFormData) => {
+    const { description, segment, price, category } = data
+
+    await createNewTransaction({
+      description,
+      price,
+      segment,
+      category,
+    })
+
     reset()
-    console.log(data)
-    await new Promise(resolve => setTimeout(resolve, 2000))
+    setOpen(false)
   }
 
   return (
-    <Dialog.Portal>
-      <S.ModalOverlay />
+    <Dialog.Root open={open}>
+      <Dialog.Trigger asChild>
+        <Styled.Button onClick={() => setOpen(true)}>
+          Nova Transação
+        </Styled.Button>
+      </Dialog.Trigger>
 
-      <S.ModalContent>
-        <Dialog.Title>Nova Transação</Dialog.Title>
+      <Dialog.Portal>
+        <S.ModalOverlay />
 
-        <S.ModalForm onSubmit={handleSubmit(handleCreateNewTransaction)}>
-          <input
-            type="text"
-            placeholder="Descrição"
-            required
-            {...register('description')}
-          />
-          <input
-            type="number"
-            placeholder="Preço"
-            required
-            {...register('price', { valueAsNumber: true })}
-          />
-          <input
-            type="text"
-            placeholder="Categoria"
-            required
-            {...register('category')}
-          />
+        <S.ModalContent>
+          <Dialog.Title>Nova Transação</Dialog.Title>
 
-          <Controller
-            control={control}
-            name="segment"
-            render={({ field }) => {
-              return (
-                <S.TransactionType onValueChange={field.onChange}>
-                  <S.TransactionTypeButton segment="income" value="income">
-                    <Icon.ArrowCircleUp /> Entrada
-                  </S.TransactionTypeButton>
+          <S.ModalForm onSubmit={handleSubmit(handleCreateNewTransaction)}>
+            <input
+              type='text'
+              placeholder='Descrição'
+              required
+              {...register('description')}
+            />
+            <input
+              type='number'
+              placeholder='Preço'
+              required
+              {...register('price', { valueAsNumber: true })}
+            />
+            <input
+              type='text'
+              placeholder='Categoria'
+              required
+              {...register('category')}
+            />
 
-                  <S.TransactionTypeButton segment="outcome" value="outcome">
-                    <Icon.ArrowCircleDown /> Saída
-                  </S.TransactionTypeButton>
-                </S.TransactionType>
-              )
-            }}
-          />
+            <Controller
+              control={control}
+              name='segment'
+              render={({ field }) => {
+                return (
+                  <S.TransactionType onValueChange={field.onChange}>
+                    <S.TransactionTypeButton segment='income' value='income'>
+                      <Icon.ArrowCircleUp /> Entrada
+                    </S.TransactionTypeButton>
 
-          <S.RegisterButton type="submit" disabled={isSubmitting}>
-            Cadastrar
-          </S.RegisterButton>
-        </S.ModalForm>
+                    <S.TransactionTypeButton segment='outcome' value='outcome'>
+                      <Icon.ArrowCircleDown /> Saída
+                    </S.TransactionTypeButton>
+                  </S.TransactionType>
+                )
+              }}
+            />
 
-        <S.ModalCloseButton>
-          <Icon.X weight="bold" />
-        </S.ModalCloseButton>
-      </S.ModalContent>
-    </Dialog.Portal>
+            <S.RegisterButton type='submit' disabled={isSubmitting}>
+              Cadastrar
+            </S.RegisterButton>
+          </S.ModalForm>
+
+          <S.ModalCloseButton>
+            <Icon.X weight='bold' />
+          </S.ModalCloseButton>
+        </S.ModalContent>
+      </Dialog.Portal>
+    </Dialog.Root>
   )
 }
