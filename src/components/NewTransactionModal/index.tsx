@@ -4,9 +4,10 @@ import * as Icon from 'phosphor-react'
 import * as z from 'zod'
 import { Controller, useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { useTransactions } from '../../hooks/useTransactions'
 import { useState } from 'react'
 import * as Styled from '../../styles/components/Button'
+import { useContextSelector } from 'use-context-selector'
+import { TransactionsContext } from '../../contexts/TransactionsProvider'
 
 const NewTransactionFormSchema = z.object({
   description: z.string(),
@@ -30,7 +31,12 @@ export const NewTransactionModal = () => {
 
   const [open, setOpen] = useState(false)
 
-  const { createNewTransaction } = useTransactions()
+  const createNewTransaction = useContextSelector(
+    TransactionsContext,
+    context => {
+      return context.createNewTransaction
+    }
+  )
 
   const handleCreateNewTransaction = async (data: NewTransactionFormData) => {
     const { description, segment, price, category } = data
